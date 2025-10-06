@@ -45,7 +45,7 @@ function IdeaDetailsPage() {
       <h2 className="text-2xl font-bold">{idea.title}</h2>
       <p className="mt-2">{idea.description}</p>
       {/*Edit Link*/}
-      <Link to='/ideas/$ideaId/edit' params={{ideaId: idea.id.toString()}}
+      <Link to='/ideas/$ideaId/edit' params={{ideaId: idea._id.toString()}}
       className="inline-block text-sm bg-yellow-500 hover:bg-yellow-600 text-white mt-4 mr-4 px-4 py-2 rounded transition">
         Edit
       </Link>

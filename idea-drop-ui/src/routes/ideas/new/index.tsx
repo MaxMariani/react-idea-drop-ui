@@ -48,9 +48,6 @@ function NewIdeaPage() {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Create New Idea</h1>
       </div>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Create New Idea</h1>
-      </div>
       <form className="space-y-2" onSubmit={handleSubmit}>
         <div>
           <label

@@ -24,7 +24,7 @@ const IdeaCard = ({
         <Link
           className={linkClasses}
           to="/ideas/$ideaId"
-          params={{ ideaId: idea.id.toString() }}
+          params={{ ideaId: idea._id.toString() }}
         >
           {button ? 'View Idea' : 'Read More ➡️'}
         </Link>
