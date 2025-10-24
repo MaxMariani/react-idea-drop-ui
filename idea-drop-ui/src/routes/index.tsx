@@ -36,7 +36,7 @@ function Home() {
         </h2>
         <div className="space-y-6">
           {ideas.map((idea) => (
-            <IdeaCard idea={idea} button={false} />
+            <IdeaCard idea={idea} key={idea._id} button={false} />
           ))}
         </div>
 

@@ -14,7 +14,7 @@ const Header = () => {
       setUser(null);
       navigate({ to: "/" });
     } catch (err: any) {
-      console.log('Logout failed: ', err)
+      console.log("Logout failed: ", err);
     }
   };
 
@@ -65,12 +65,13 @@ const Header = () => {
             </>
           ) : (
             <>
-              <span className="text-gray-700 font-medium px-2">
+              <span className="text-gray-700 font-medium px-2 hidden sm:block">
                 Welcome, {user.name}
               </span>
-              <button 
-              onClick={handleLogout}
-              className="text-red-600 font-medium transition px-3 py-2 leading-none hover:text-red-700">
+              <button
+                onClick={handleLogout}
+                className="text-red-600 font-medium transition px-3 py-2 leading-none hover:text-red-700"
+              >
                 Logout
               </button>
             </>

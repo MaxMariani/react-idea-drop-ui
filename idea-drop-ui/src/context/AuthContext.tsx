@@ -1,4 +1,12 @@
-import { useState, useContext, createContext, type ReactNode } from "react";
+import {
+  useState,
+  useContext,
+  createContext,
+  type ReactNode,
+  useEffect,
+} from "react";
+import { refreshAccessToken } from "@/api/auth";
+import { setStoredAccessToken } from "@/lib/authToken";
 
 type AuthContextType = {
   accessToken: string | null;
@@ -13,6 +21,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<AuthContextType["user"] | null>(null);
 
+  // Fetches User and Access Token on page reload
+  useEffect(() => {
+    const loadAuth = async () => {
+      try {
+        const { accessToken: newToken, user } = await refreshAccessToken();
+        setAccessToken(newToken);
+        setUser(user);
+        setStoredAccessToken(newToken);
+      } catch (err) {
+        console.log('Failed to refresh token', err);
+      }
+    };
+    loadAuth();
+  }, []);
+
+  useEffect(() => {
+    setStoredAccessToken(accessToken);
+  }, [accessToken]);
+
   return (
     <AuthContext.Provider
       value={{ accessToken, setAccessToken, user, setUser }}
@@ -23,10 +50,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth must be used within a provider');
-    }
-    return context;
-}
-
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within a provider");
+  }
+  return context;
+};
